@@ -1,0 +1,75 @@
+TUTORIAL GIT
+
+https://blog.desdelinux.net/guia-rapida-para-utilizar-github/
+
+sudo apt-get install git
+
+git config --global user.name "nombre_usuario"
+git config --global user.email "email_id"
+
+git init Mytest
+cd Mytest
+
+nano README        # escrivim info
+nano sample.c      # arxius que necessitem
+
+git add README
+git add sample.c
+git status          # mostra l'estat actual
+
+git commit -m "mensaje"
+
+Creación de un repositorio en GitHub
+
+El nombre del repositorio debe ser el mismo que el repositorio del sistema local. 
+En este caso, será «MyTest». Para ello, antes que nada, hay que iniciar sesión en Github. 
+Luego, hay que hacer clic en el signo más (+) en la esquina superior derecha de la página 
+y seleccionar la opción «crear nuevo repositorio». 
+Finalmente, hay que rellenar los datos y hacer clic en el botón «crear repositorio».
+Una vez hecho esto se creará el repositorio y será posible subir el contenido del 
+repositorio local en el repositorio GitHub. Para conectarse al repositorio remoto en 
+GitHub hay que ejecutar el comando:
+
+git remote add origin https://github.com/user_name/Mytest.git
+
+El paso final es empujar el contenido del repositorio local hacia el repositorio remoto, 
+mediante el comando:
+
+git push origin master
+
+Creación de una rama (branch)
+
+Cuando los desarrolladores quieren corregir errores o agregar nuevas funciones a menudo 
+crean una rama (branch) o copia del código de modo que puedan realizar commits en forma 
+separada, sin afectar el proyecto original. Luego, cuando hayan terminado pueden fusionar 
+esta rama de vuelta en la rama principal (master).
+
+Para crear una nueva rama hay dos opciones:
+
+Opción larga:
+
+git branch mirama # crea una nueva rama llamada mirama
+git checkout mirama - pasa a utilizar la rama mirama.
+
+Opción corta:
+
+git checkout -b mirama - crea y pasa a utilizar la rama mirama
+
+Una vez realizados los cambios, hay que agregarlos al índice de la rama y hacer el commit 
+correspondiente:
+
+git add .
+git commit -m "cambios en mirama"
+
+Luego, hay que volver a la rama principal y tomar los cambios realizados en mirama:
+
+git checkout master
+git merge mirama
+
+Finalmente, hay que borrar mirama (ya que los cambios fueron incorporados en master):
+
+git branch -d mirama
+
+Y subir master a Github:
+
+git push origin master
