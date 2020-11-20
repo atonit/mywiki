@@ -19,7 +19,7 @@ git status          # mostra l'estat actual
 
 git commit -m "mensaje"
 
-Creación de un repositorio en GitHub
+####### Creación de un repositorio en GitHub
 
 El nombre del repositorio debe ser el mismo que el repositorio del sistema local. 
 En este caso, será «MyTest». Para ello, antes que nada, hay que iniciar sesión en Github. 
@@ -37,7 +37,7 @@ mediante el comando:
 
 git push origin master
 
-Creación de una rama (branch)
+###### Creación de una rama (branch)
 
 Cuando los desarrolladores quieren corregir errores o agregar nuevas funciones a menudo 
 crean una rama (branch) o copia del código de modo que puedan realizar commits en forma 
@@ -73,3 +73,28 @@ git branch -d mirama
 Y subir master a Github:
 
 git push origin master
+
+###### Creación de un repositorio Git derivado (fork)
+
+Gracias a Git y a la existencia de las grandes librerías de repositorios públicos, como Github, 
+gran parte de las veces no es necesario comenzar a programar nuestro proyecto desde cero. 
+En esos casos, es posible tomar este código de base para crear un nuevo proyecto.
+
+Para ello, lo primero que hay que hacer es un fork de un repositorio existente, o sea, 
+un proyecto derivado del mismo que tome como base el código del proyecto original. En Github, 
+eso se consigue haciendo clic en el botón correspondiente, como se ve en la captura a continuación.
+
+Fork de un Repositorio Github
+
+Luego, lo que hay que hacer es clonar el repositorio de este nuevo proyecto en nuestra computadora. 
+A modo de ejemplo, podemos utilizar mi repositorio de Ankifox, una extensión para Firefox que permite 
+agregar palabras a Anki, el cual se encuentra disponible en Github:
+
+git clone https://github.com/usemoslinux/Ankifox.git
+
+No olvides reemplazar https://github.com/usemoslinux/Ankifox.git por la URL correspondiente a tu 
+proyecto. Obtener esta dirección es muy fácil, como se ve en la imagen a continuación.
+
+Clonación de un Repositorio Github
+
+Este comando creará un directorio llamado «Ankifox», inicializará el directorio .git dentro de él, y bajará todos los datos de ese repositorio, a fin de trabajar con la última versión.
