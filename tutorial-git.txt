@@ -71,6 +71,7 @@ git branch -d mirama    # Delete local branch
 git branch --remote     # List of remote branch
 git push -d origin branca2   # Delete remote branch
 
+
 git push origin master
 
     ###### Creación de un repositorio Git derivado (fork)
