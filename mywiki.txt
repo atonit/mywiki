@@ -1,5 +1,9 @@
-    TUTORIAL GIT
+    
+############## wiki vscode #####################
 
+############## wiki git #####################
+
+    TUTORIAL GIT
     https://blog.desdelinux.net/guia-rapida-para-utilizar-github/
 
 sudo apt-get install git
@@ -91,3 +95,9 @@ git push origin master
     agregar palabras a Anki, el cual se encuentra disponible en Github:
 
 git clone https://github.com/usemoslinux/Ankifox.git
+
+
+############## wiki docker #####################
+
+
+############## wiki docker-composer #####################
