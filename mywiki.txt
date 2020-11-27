@@ -1,84 +1,68 @@
     
-############## wiki vscode #####################
+    ############## wiki vscode #####################
 
-############## wiki git #####################
+$ Ctrl + F   # Find a word in a File
 
-    TUTORIAL GIT
-    https://blog.desdelinux.net/guia-rapida-para-utilizar-github/
 
-sudo apt-get install git
+    ############## wiki git #####################
+   
+$ sudo apt-get install git    # install git
 
-git config --global user.name "nombre_usuario"
-git config --global user.email "email_id"
+$ git config --global user.name "nombre_usuario"
+$ git config --global user.email "email_id"
 
-git init Mytest
-cd Mytest
+$ git init Mytest
+$ cd Mytest
 
-nano README        # escrivim info
-nano sample.c      # arxius que necessitem
+$ nano README        # escrivim info
 
-git add README
-git add sample.c
-git status          # mostra l'estat actual
+$ git add README
+$ git add .         # Add all to stage
+$ git status          # mostra l'estat actual
 
-git commit -m "mensaje"
+$ git commit -m "mensaje"
 
-    ####### Creación de un repositorio en GitHub
+    ####### Creació d'un repositori a GitHub
 
     El nombre del repositorio debe ser el mismo que el repositorio del sistema local. 
-    En este caso, será «MyTest». Para ello, antes que nada, hay que iniciar sesión en Github. 
-    Luego, hay que hacer clic en el signo más (+) en la esquina superior derecha de la página 
-    y seleccionar la opción «crear nuevo repositorio». 
-    Finalmente, hay que rellenar los datos y hacer clic en el botón «crear repositorio».
-    Una vez hecho esto se creará el repositorio y será posible subir el contenido del 
-    repositorio local en el repositorio GitHub. Para conectarse al repositorio remoto en 
-    GitHub hay que ejecutar el comando:
+    Per connectar el repositori local amb el creat a github:
+  
+$ git remote add origin https://github.com/user_name/Mytest.git
 
-git remote add origin https://github.com/user_name/Mytest.git
+$ git push origin main     # pujam el contingut local a remot
 
-    El paso final es empujar el contenido del repositorio local hacia el repositorio remoto, 
-    mediante el comando:
-
-git push origin master
-
-    ###### Creación de una rama (branch)
+    ###### GIT BRANCH
 
     Cuando los desarrolladores quieren corregir errores o agregar nuevas funciones a menudo 
     crean una rama (branch) o copia del código de modo que puedan realizar commits en forma 
     separada, sin afectar el proyecto original. Luego, cuando hayan terminado pueden fusionar 
     esta rama de vuelta en la rama principal (master).
 
-    Para crear una nueva rama hay dos opciones:
-
-    Opción larga:
-
-git branch mirama # crea una nueva rama llamada mirama
-git checkout mirama - pasa a utilizar la rama mirama.
-
+$ git branch mirama # crea una nueva rama llamada mirama
+$ git checkout mirama # pasam a utilizar la rama mirama.
     Opción corta:
-
-git checkout -b mirama - crea y pasa a utilizar la rama mirama
+$ git checkout -b mirama - crea y pasa a utilizar la rama mirama
 
     Una vez realizados los cambios, hay que agregarlos al índice de la rama y hacer el commit 
     correspondiente:
 
-git add .
-git commit -m "cambios en mirama"
+$ git add .
+$ git commit -m "cambios en mirama"
 
     Luego, hay que volver a la rama principal y tomar los cambios realizados en mirama:
 
-git checkout master
-git merge mirama
+$ git checkout main
+$ git merge mirama
 
-git branch -d mirama    # Delete local branch
+$ git branch -d mirama    # Delete local branch
 
-git branch --remote     # List of remote branch
-git push -d origin branca2   # Delete remote branch
+$ git branch --remote     # List of remote branch
+$ git push -d origin branca2   # Delete remote branch
 
 
-git push origin master
+$ git push origin main
 
-    ###### Creación de un repositorio Git derivado (fork)
+    ###### GIT FORK      repositorio derivado 
 
     Gracias a Git y a la existencia de las grandes librerías de repositorios públicos, como Github, 
     gran parte de las veces no es necesario comenzar a programar nuestro proyecto desde cero. 
@@ -87,17 +71,15 @@ git push origin master
     Para ello, lo primero que hay que hacer es un fork de un repositorio existente, o sea, 
     un proyecto derivado del mismo que tome como base el código del proyecto original. En Github, 
     eso se consigue haciendo clic en el botón correspondiente, como se ve en la captura a continuación.
-
     Fork de un Repositorio Github
-
     Luego, lo que hay que hacer es clonar el repositorio de este nuevo proyecto en nuestra computadora. 
     A modo de ejemplo, podemos utilizar mi repositorio de Ankifox, una extensión para Firefox que permite 
     agregar palabras a Anki, el cual se encuentra disponible en Github:
 
-git clone https://github.com/usemoslinux/Ankifox.git
+$ git clone https://github.com/usemoslinux/Ankifox.git
 
 
-############## wiki docker #####################
+    ############## wiki docker #####################
 
 
-############## wiki docker-composer #####################
+    ############## wiki docker-composer #####################
