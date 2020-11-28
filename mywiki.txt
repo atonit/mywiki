@@ -1,6 +1,61 @@
     
     ############## wiki vscode #####################
 
+    Ctrl + B: Ocultar/Mostrar barra de actividades
+    Ctrl + Shift +
+        E – Explorador
+        F – Buscar (pensar en Find)
+        G – Control de código (pensar en Git)
+        D – Depurador
+        X – Extensiones
+
+    Ctrl + Shift + P    # Palette Acceso a toda la funcionalidad.
+    Ctrl + P            # Acceso a los ficheros.
+
+Configurabilidad
+
+Las opciones de VSCode se almacenan en ficheros JSON (JavaScript Object Notation), lo que nos permite 
+editar toda la configurabilidad de este. Para editar la misma podemos acceder de dos formas:
+
+    Ctrl+Shift+P -> Preferences
+    File -> Preferences
+
+¿Qué podemos configurar?
+
+    Prácticamente todo el comportamiento del editor, como el tabulado de líneas, el auto formateo, 
+    el zoom por defecto, etc. Estos ajustes se pueden guardar a tres distintos niveles aplicándolos 
+    solo en esos casos:
+        Usuario
+        Espacio de trabajo (Workspace)
+        Lenguaje (AL, C#, JavaScript, etc.
+
+        Los atajos de teclado. VSCode dispone de muchos atajos de teclados, pero si no nos gusta alguno, 
+        podemos modificarlo a nuestro gusto.
+        El aspecto: Tema del editor, iconos, colores…
+        Snippets, trozos de código generados con solo un par de teclas. Podemos crear todos los que queramos
+        y configurarlos para funcionar donde queramos.
+
+Trucos de edición
+
+    Existen muchas combinaciones de teclado que nos permiten realizar tareas triviales de manera mucho más 
+    eficiente.
+
+    Con el multi-cursor podemos editar múltiples puntos del fichero simultáneamente. Se puede realizar 
+    de varias maneras:
+        Para hacerlo con el ratón: Alt + Click
+        Desde el teclado: Ctrl + Alt + Up/Down
+        También podemos seleccionar todas las ocurrencias del texto seleccionado: Ctrl + Shift + L
+    Cuando queremos modificar una selección de texto:
+        Mover línea: Alt + Up/Down
+        Copiar línea: Alt + Shift + Up/Down
+        Expandir selección: Shift + Alt + Right/Left
+    Syde by Syde editing, o abrir varios ficheros en la misma pantalla:
+        Sobre explorador: Ctrl + Enter
+        Sobre fichero: Crtl + \
+
+    Navegar entre editores: Ctrl + 1,2,3, etc.
+
+
 $ Ctrl + F   # Find a word in a File
 
 
