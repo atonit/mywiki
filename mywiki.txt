@@ -1,3 +1,21 @@
+############## wiki raspberry pi ##################### 
+
+    https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi
+    1. Prepare sd card: Connect micro sd to pc
+    2. Install Raspberry Pi Imager https://downloads.raspberrypi.org/imager/imager_amd64.deb
+    3. Start Imager and select ubuntu 20.04. Create all os you need
+    4. Wifi configuration: sd in a pc, system-boot, edit the network-config file
+        For example:
+
+          wifis:
+            wlan0:
+            dhcp4: true
+            optional: true
+            access-points:
+              "home network":
+                password: "123456789"
+
+    5. Extract sd from the pc and insert to the raspberry pi. boot the rpi. 
     
 
 ############## wiki linux #####################
