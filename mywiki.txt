@@ -16,13 +16,92 @@
                 password: "123456789"
 
     5. Extract sd from the pc and insert to the raspberry pi. boot the rpi. 
+
+
+    --------
+    Notes sobre test que han anat bé:
+    https://www.instructables.com/Installing-Nextcloud-on-a-Raspberry-Pi-Using-Docke/    + traefik + https
+
+    https://www.smarthomebeginner.com/traefik-2-docker-tutorial/   info sobre htpasswd
+    (basic auth tonit t543res)
+
+    Tools to Check Logs
+        Recently, one of my GitHub followers recommended Dozzle. I quickly became a big fan of it. Dozzle allows you to monitor logs of all your docker containers in real-time. This helps to troubleshoot and fix issues.
+    authelia: 
+    https://www.grc.com/passwords.htm web que suministra ramdom passwords “segurs”
+
+
     
 
 ############## wiki linux #####################
 
     https://ayudalinux.com/como-gestionar-usuarios-en-linux/
 
-    
+        $ passwd         canviar de password
+        $ sudo adduser username
+        $ sudo usermod -aG sudo username
+        $ sudo deluser --remove-home username
+        $ ssh-copy-id ubuntu@192.168.x.x # cp clau pública al server i accedim fora password
+
+
+    https://linuxconfig.org/create-bootable-ubuntu-20-04-usb-startup-disk
+
+
+        $ sudo shutdown now    # tancar ara.
+        $ sudo -s     # passam a super usuari
+        $ sudo dpkg-reconfigure tzdata  # configura la zona horaria.
+        $ sudo dpkg -l nginx     # Quina versio de nginx tenim?
+        $ sudo ln -s /etc/nginx/sites-available/rpi81.test /etc/nginx/sites-enabled/  # link
+        $ unlink /etc/nginx/sites-enabled/default      # unlink
+
+
+        $ lscpu # mostra la arquitectura del cpu, amb ubuntu server diu aarch64, 32 i 64 bits
+        $ dpkg --print-architecture     # arm64 en el cas de rpi4 amb ubuntuserver
+        $ screenfetch      # Mostra les caraterístiques del sistema del pc.
+        $ cat /sys/class/thermal/thermal_zone0/temp # mostra la temperatura de la cpu x1000
+
+        $ sudo netstat -tulpn # active or open internet conexions, ports, socket ports etc
+        $ sudo netstat -tulpn | grep -i "80" # connexions existents al port 80
+        $ fuser 80/tcp        # to find PIDs running on port 80
+        $ ps -p 13625 -o comm=         # To search for process name using process PID
+        $ sudo lsof -i       # To display active TCP and UDP endpoints with lsof
+        $ sudo lsof -i :80  # To display processes /services listening on a particular port
+        
+    https://www.yougetsignal.com/  # quins ports estan oberts?
+
+        $ nmap -sP 192.168.1.0/24    # Ens mostra quantes ip’s estan actives
+        $ curl ifconfig.me    # quina és la ip pública del servidor?
+        $ sudo netplan apply
+        $ ip add show #( abans ifconfig)
+        $ ip route show
+
+    Use sudo kill <pid> or sudo killall <process-name>
+
+    ufw ubuntu firewall
+        $ sudo ufw enable
+        $ sudo ufw allow 'Nginx HTTP'
+        $ sudo ufw reload
+        $ sudo ufw status
+
+        $ ufw status      - active or inactive
+        $ ufw app list        - available applications
+        $ ufw allow OpenSSH    - per poder entrar per ssh
+        $ ufw enable             - activam ufw
+
+    ------------------------
+    Create Directories and Set Permissions 
+    in the /var/www/ directory for our two domains.
+        $ sudo mkdir -p /var/www/mytest1.com/public_html
+        $sudo mkdir -p /var/www/mytest2.com/public_html
+    If we want our regular non-root user to be able to modify files in these directories, we must change the ownership.
+        $ sudo chown -R $(whoami):$(whoami) /var/www/mytest1.com/public_html
+        $ sudo chown -R $(whoami):$(whoami) /var/www/mytest2.com/public_html
+    The $(whoami) variable will take the value of the user you are currently logged in as.
+    We must also make sure the permissions for the general web directory /var/www and its contents are set to 755 so that pages can be served correctly.
+        $ sudo chmod -R 755 /var/www
+
+
+
 
 ############## wiki vscode #####################
 
@@ -112,18 +191,14 @@
 
         ###### GIT BRANCH
 
-        Cuando los desarrolladores quieren corregir errores o agregar nuevas funciones a menudo 
-        crean una rama (branch) o copia del código de modo que puedan realizar commits en forma 
-        separada, sin afectar el proyecto original. Luego, cuando hayan terminado pueden fusionar 
-        esta rama de vuelta en la rama principal (master).
+        Cuando los desarrolladores quieren corregir errores o agregar nuevas funciones a menudo crean una rama (branch) o copia del código de modo que puedan realizar commits en forma separada, sin afectar el proyecto original. Luego, cuando hayan terminado pueden fusionar esta rama de vuelta en la rama principal (master).
 
     $ git branch mirama # crea una nueva rama llamada mirama
     $ git checkout mirama # pasam a utilizar la rama mirama.
         Opción corta:
     $ git checkout -b mirama - crea y pasa a utilizar la rama mirama
 
-        Una vez realizados los cambios, hay que agregarlos al índice de la rama y hacer el commit 
-        correspondiente:
+        Una vez realizados los cambios, hay que agregarlos al índice de la rama y hacer el commit correspondiente:
 
     $ git add .
     $ git commit -m "cambios en mirama"
@@ -143,22 +218,28 @@
 
         ###### GIT FORK      repositorio derivado 
 
-        Gracias a Git y a la existencia de las grandes librerías de repositorios públicos, como Github, 
-        gran parte de las veces no es necesario comenzar a programar nuestro proyecto desde cero. 
-        En esos casos, es posible tomar este código de base para crear un nuevo proyecto.
-
-        Para ello, lo primero que hay que hacer es un fork de un repositorio existente, o sea, 
-        un proyecto derivado del mismo que tome como base el código del proyecto original. En Github, 
-        eso se consigue haciendo clic en el botón correspondiente, como se ve en la captura a continuación.
+        Gracias a Git y a la existencia de las grandes librerías de repositorios públicos, como Github, gran parte de las veces no es necesario comenzar a programar nuestro proyecto desde cero. En esos casos, es posible tomar este código de base para crear un nuevo proyecto.
+        Para ello, lo primero que hay que hacer es un fork de un repositorio existente, o sea, un proyecto derivado del mismo que tome como base el código del proyecto original. En Github, eso se consigue haciendo clic en el botón correspondiente.
         Fork de un Repositorio Github
         Luego, lo que hay que hacer es clonar el repositorio de este nuevo proyecto en nuestra computadora. 
-        A modo de ejemplo, podemos utilizar mi repositorio de Ankifox, una extensión para Firefox que permite 
-        agregar palabras a Anki, el cual se encuentra disponible en Github:
+        A modo de ejemplo, podemos utilizar mi repositorio de Ankifox, una extensión para Firefox que permite agregar palabras a Anki, el cual se encuentra disponible en Github:
 
     $ git clone https://github.com/usemoslinux/Ankifox.git
 
 
 ############## wiki docker #####################
+
+    To see what network(s) your container is on, assuming your container is called c1:
+        $ docker inspect c1 -f "{{json .NetworkSettings.Networks }}"
+
+    To disconnect your container from the first network (assuming your first network is called test-net):
+        $ docker network disconnect test-net c1
+
+    Then to reconnect it to another network (assuming it's called test-net-2):
+        $ docker network connect test-net-2 c1
+
+    To check if two containers (or more) are on a network together:
+        $ docker network inspect test-net -f "{{json .Containers }}"
 
 
 ############## wiki docker-composer #####################
