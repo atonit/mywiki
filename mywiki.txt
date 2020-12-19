@@ -44,7 +44,7 @@ INDEX
         
     https://www.yougetsignal.com/  # quins ports estan oberts?
 
-        $ nmap -sP 192.168.1.0/24    # Ens mostra quantes ip’s estan actives
+        
         $ curl ifconfig.me    # quina és la ip pública del servidor?
         $ sudo netplan apply
         $ ip add show #( abans ifconfig)
@@ -223,8 +223,12 @@ INDEX
 
 
 ############## wiki raspberry pi ##################### 
+    https://ubuntu.com/tutorials/how-to-kubernetes-cluster-on-raspberry-pi#4-installing-microk8s
+
+    https://viktorvan.github.io/kubernetes/kubernetes-on-raspberry-pi/
 
     https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi
+    
     1. Prepare sd card: Connect micro sd to pc
     2. Install Raspberry Pi Imager https://downloads.raspberrypi.org/imager/imager_amd64.deb
     3. Start Imager and select ubuntu 20.04. Create all os you need
@@ -244,38 +248,41 @@ INDEX
 
 
     5. Extract sd from the pc and insert to the raspberry pi & boot it
-        $ ssh ubuntu@ip user & password: ubuntu
+        To find the ip:
+        $ nmap -sP 192.168.1.0/24  # Ens mostra quantes ip’s estan actives
+        $ ssh ubuntu@ip user & password: ubuntu . Canviar passwd 
 
         $ ip a    # we can see the network interface name and the actual ip
 
         $ sudo nano /etc/netplan/50-cloud-init.yaml
 
-            network:
-        ethernets:
-            eth0:
-                dhcp4: no
-                dhcp6: no
-                optional: true
-                addresses: [192.168.1.11/24]
-                gateway4: 192.168.1.1
-                nameservers:
-                    addresses: [192.168.1.1, 8.8.8.8]
-        version: 2
-        renderer: networkd
-        wifis:
-            wlan0:
-                dhcp4: no
-                dhcp6: no
-                optional: true
-                addresses: [192.168.1.10/24]
-                gateway4: 192.168.1.1
-                nameservers:
-                    addresses: [192.168.1.1, 8.8.8.8]
-                access-points:
-                    "wifiname1":
-                        password: "password"
-                    "WIFINAME2":
-                        password: "PASSWORD"
+network:
+    ethernets:
+        eth0:
+            dhcp4: no
+            dhcp6: no
+            optional: true
+            addresses: [192.168.1.13/24]
+            gateway4: 192.168.1.1
+            nameservers:
+                addresses: [192.168.1.1, 8.8.8.8]
+    version: 2
+    renderer: networkd
+    wifis:
+        wlan0:
+            dhcp4: no
+            dhcp6: no
+            optional: true
+            addresses: [192.168.1.12/24]
+            gateway4: 192.168.1.1
+            nameservers:
+                addresses: [192.168.1.1, 8.8.8.8]
+            access-points:
+                "SONAMAGAT_5G":
+                    password: "sonAmagat"
+                "SONAMAGAT":
+                    password: "sonAmagat"
+
         $ sudo netplan try
         $ sudo netplan apply
         $ sudo reboot
