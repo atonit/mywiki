@@ -1,37 +1,12 @@
+INDEX
+############## wiki linux #####################
+############## wiki vscode #####################
+############## wiki git #####################
+############## wiki docker #####################
+############## wiki docker-composer #####################
 ############## wiki raspberry pi ##################### 
+------------
 
-    https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi
-    1. Prepare sd card: Connect micro sd to pc
-    2. Install Raspberry Pi Imager https://downloads.raspberrypi.org/imager/imager_amd64.deb
-    3. Start Imager and select ubuntu 20.04. Create all os you need
-    4. Wifi configuration: sd in a pc, system-boot, edit the network-config file
-        For example:
-
-          wifis:
-            wlan0:
-            dhcp4: true
-            optional: true
-            access-points:
-              "home network":
-                password: "123456789"
-
-    5. Extract sd from the pc and insert to the raspberry pi. boot the rpi. 
-
-
-    --------
-    Notes sobre test que han anat bé:
-    https://www.instructables.com/Installing-Nextcloud-on-a-Raspberry-Pi-Using-Docke/    + traefik + https
-
-    https://www.smarthomebeginner.com/traefik-2-docker-tutorial/   info sobre htpasswd
-    (basic auth tonit t543res)
-
-    Tools to Check Logs
-        Recently, one of my GitHub followers recommended Dozzle. I quickly became a big fan of it. Dozzle allows you to monitor logs of all your docker containers in real-time. This helps to troubleshoot and fix issues.
-    authelia: 
-    https://www.grc.com/passwords.htm web que suministra ramdom passwords “segurs”
-
-
-    
 
 ############## wiki linux #####################
 
@@ -41,7 +16,7 @@
         $ sudo adduser username
         $ sudo usermod -aG sudo username
         $ sudo deluser --remove-home username
-        $ ssh-copy-id ubuntu@192.168.x.x # cp clau pública al server i accedim fora password
+        
 
 
     https://linuxconfig.org/create-bootable-ubuntu-20-04-usb-startup-disk
@@ -100,6 +75,8 @@
     We must also make sure the permissions for the general web directory /var/www and its contents are set to 755 so that pages can be served correctly.
         $ sudo chmod -R 755 /var/www
 
+    ----------------
+    
 
 
 
@@ -243,3 +220,93 @@
 
 
 ############## wiki docker-composer #####################
+
+
+############## wiki raspberry pi ##################### 
+
+    https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi
+    1. Prepare sd card: Connect micro sd to pc
+    2. Install Raspberry Pi Imager https://downloads.raspberrypi.org/imager/imager_amd64.deb
+    3. Start Imager and select ubuntu 20.04. Create all os you need
+    4. Wifi configuration: sd in a pc, system-boot, edit the network-config file
+        For example:
+
+          wifis:
+            wlan0:
+            dhcp4: true
+            optional: true
+            access-points:
+              "home network":
+                password: "123456789"
+
+        A vegades dona problemes. Solució: entram per ethernet:
+        https://linuxhint.com/setup_static_ip_address_ubuntu/
+
+
+    5. Extract sd from the pc and insert to the raspberry pi & boot it
+        $ ssh ubuntu@ip user & password: ubuntu
+
+        $ ip a    # we can see the network interface name and the actual ip
+
+        $ sudo nano /etc/netplan/50-cloud-init.yaml
+
+            network:
+        ethernets:
+            eth0:
+                dhcp4: no
+                dhcp6: no
+                optional: true
+                addresses: [192.168.1.11/24]
+                gateway4: 192.168.1.1
+                nameservers:
+                    addresses: [192.168.1.1, 8.8.8.8]
+        version: 2
+        renderer: networkd
+        wifis:
+            wlan0:
+                dhcp4: no
+                dhcp6: no
+                optional: true
+                addresses: [192.168.1.10/24]
+                gateway4: 192.168.1.1
+                nameservers:
+                    addresses: [192.168.1.1, 8.8.8.8]
+                access-points:
+                    "wifiname1":
+                        password: "password"
+                    "WIFINAME2":
+                        password: "PASSWORD"
+        $ sudo netplan try
+        $ sudo netplan apply
+        $ sudo reboot
+    6. Edit the host name 
+        $ hostnamectl
+        $ sudo nano /etc/hosts
+        $ sudo nano /etc/hostname
+        $ sudo reboot
+    7. Setup ssh keys
+        $ ssh-copy-id ubuntu@192.168.x.x # cp clau pública al server i accedim fora password.
+        If we want we can also disable username/password login altogether and only allow login with ssh keys. 
+        $ sudo nano /etc/ssh/sshd_config # and setting PasswordAuthentication no.
+        $ sudo systemctl restart ssh
+
+
+
+
+     
+
+
+    --------
+    Notes sobre test que han anat bé:
+    https://www.instructables.com/Installing-Nextcloud-on-a-Raspberry-Pi-Using-Docke/    + traefik + https
+
+    https://www.smarthomebeginner.com/traefik-2-docker-tutorial/   info sobre htpasswd
+    (basic auth tonit t543res)
+
+    Tools to Check Logs
+        Recently, one of my GitHub followers recommended Dozzle. I quickly became a big fan of it. Dozzle allows you to monitor logs of all your docker containers in real-time. This helps to troubleshoot and fix issues.
+    authelia: 
+    https://www.grc.com/passwords.htm web que suministra ramdom passwords “segurs”
+
+
+    
