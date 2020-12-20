@@ -232,6 +232,7 @@ INDEX
     1. Prepare sd card: Connect micro sd to pc
     2. Install Raspberry Pi Imager https://downloads.raspberrypi.org/imager/imager_amd64.deb
     3. Start Imager and select ubuntu 20.04. Create all os you need
+
     4. Wifi configuration: sd in a pc, system-boot, edit the network-config file
         For example:
 
@@ -252,7 +253,7 @@ INDEX
         $ nmap -sP 192.168.1.0/24  # Ens mostra quantes ip’s estan actives
         $ ssh ubuntu@ip user & password: ubuntu . Canviar passwd 
 
-        $ ip a    # we can see the network interface name and the actual ip
+        $ ip a    # wlan0 we can see the network interface name and the actual ip
 
         $ sudo nano /etc/netplan/50-cloud-init.yaml
 
@@ -279,12 +280,12 @@ network:
                 addresses: [192.168.1.1, 8.8.8.8]
             access-points:
                 "SONAMAGAT_5G":
-                    password: "sonAmagat"
+                    password: "passwordx"
                 "SONAMAGAT":
-                    password: "sonAmagat"
+                    password: "passwordx"
 
-        $ sudo netplan try
-        $ sudo netplan apply
+        $ sudo netplan try    # (opcional)
+        $ sudo netplan apply  # (opcional)
         $ sudo reboot
     6. Edit the host name 
         $ hostnamectl
@@ -296,6 +297,7 @@ network:
         If we want we can also disable username/password login altogether and only allow login with ssh keys. 
         $ sudo nano /etc/ssh/sshd_config # and setting PasswordAuthentication no.
         $ sudo systemctl restart ssh
+    ----------Totes les raspberrys FUNCIONANT -----------
 
 
 
