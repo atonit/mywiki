@@ -297,6 +297,7 @@ network:
         If we want we can also disable username/password login altogether and only allow login with ssh keys. 
         $ sudo nano /etc/ssh/sshd_config # and setting PasswordAuthentication no.
         $ sudo systemctl restart ssh
+
     ----------Totes les raspberrys FUNCIONANT -----------
 
 
