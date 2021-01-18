@@ -17,6 +17,16 @@ INDEX
         $ sudo usermod -aG sudo username
         $ sudo deluser --remove-home username
         
+        Setup ssh keys
+        $ ssh-copy-id ubuntu@192.168.x.x # cp clau pública al server i accedim fora password.
+        If we want we can also disable username/password login altogether and only allow login with ssh keys. 
+        $ sudo nano /etc/ssh/sshd_config # and setting PasswordAuthentication no.
+        $ sudo systemctl restart ssh
+        
+    How to Copy Files Between Two Computers
+        scp -r your_user_name@ip_address_of_PCA:/path/to/remote/directory /path/to/local/directory
+        scp -r tonit@192.168.1.10:Pictures/* .  # copia tot el que hi ha dins la carpeta Pictures de tonit, a la carpeta actual d'on estas.
+
 
 
     https://linuxconfig.org/create-bootable-ubuntu-20-04-usb-startup-disk
