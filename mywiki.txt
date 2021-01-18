@@ -17,7 +17,7 @@ INDEX
         $ sudo usermod -aG sudo username
         $ sudo deluser --remove-home username
         
-        Setup ssh keys
+    Setup ssh keys
         $ ssh-copy-id ubuntu@192.168.x.x # cp clau pública al server i accedim fora password.
         If we want we can also disable username/password login altogether and only allow login with ssh keys. 
         $ sudo nano /etc/ssh/sshd_config # and setting PasswordAuthentication no.
